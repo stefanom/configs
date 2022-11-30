@@ -197,3 +197,7 @@ export EDITOR="code"
 export PATH="$HOME/bin:$PATH"
 
 #export RUSTC_WRAPPER=sccache
+
+if [ -f ~/.bash_secrets ]; then
+    . ~/.bash_secrets
+fi
