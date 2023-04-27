@@ -17,6 +17,8 @@ alias lsock='sudo lsof -i -P'
 alias size='du -m -d 1 | sort -n'
 alias pyserver='python -m http.server 8888 --bind 127.0.0.1'
 alias f='fzf'
+alias 1p='eval $(op signin)'
+alias k='kubectl'
 
 alias lsb='git branch'
 alias lst='git branch -r'
@@ -27,6 +29,7 @@ alias mergebranch='git merge --squash'
 alias diffbranch="git diff --color master..$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')"
 alias commit='git commit -a -m "commit: $1"'
 alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
 
 # ----------------------------- Functions ------------------------------
 
@@ -112,6 +115,17 @@ function ssha {
     ssh-add
 }
 
+# update: updates the current distribution using apt
+function update {
+    sudo hwclock --hctosys
+    sudo apt update
+    sudo apt full-upgrade -y
+    brew update
+    brew upgrade
+    rustup update
+}
+
+
 # --------------------------- Prompt -------------------------------------------
 
 # Outputs the current git branch name.
@@ -161,6 +175,7 @@ function prompt() {
 # Invoke the prompt function to setup do the magic.
 prompt
 
+
 # --------------------------- SSH Stuff -------------------------------
 
 function sshpipe() {
@@ -185,19 +200,23 @@ function sshpipe() {
 
 sshpipe
 
+
+# --------------------------- WSL Warp Writing --------------------------------
+
+wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit status >/dev/null || wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit start
+
+
 # --------------------------- Shell Stuff  ----------------------------
 
 # remap up/down arrow to history search instead of history scrolling
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
+
 # --------------------------- Environment Variables ----------------------------
 
 export EDITOR="code"
+export GIT_EDITOR="code --wait"
 export PATH="$HOME/bin:$PATH"
 
 #export RUSTC_WRAPPER=sccache
-
-if [ -f ~/.bash_secrets ]; then
-    . ~/.bash_secrets
-fi
