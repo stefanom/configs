@@ -1,0 +1,5 @@
+# --------------------------- Shell Stuff  ----------------------------
+
+# remap up/down arrow to history search instead of history scrolling
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'

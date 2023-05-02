@@ -1,0 +1,31 @@
+#workspace: /home/stefano/s6
+
+ssh:
+  private_key: ~/.ssh/id_rsa
+
+confluent:
+  registry:
+    url: 'op://dev/confluent/schema-registry/host'
+    key: 'op://dev/confluent/schema-registry/key'
+    secret: 'op://dev/confluent/schema-registry/secret'
+
+bitbucket:
+  workspace: singularitysix
+  username: "op://Private/BitBucket/username"
+  password: "op://Private/BitBucket/password"
+
+auth:
+  environment: dev
+  dev:
+    user: "op://Private/FusionAuth-dev/username"
+    password: "op://Private/FusionAuth-dev/password"
+    key: "op://Private/FusionAuth-API-dev/credential"
+    test_password: "Blahblah1!" 
+  stage:
+    user: "op://Private/FusionAuth-stg/username"
+    password: "op://Private/FusionAuth-stg/password"
+    key: "op://Private/FusionAuth-API-stg/credential" 
+  prod:
+    user: "op://Private/FusionAuth-prod/username"
+    password: "op://Private/FusionAuth-prod/password"
+    key: "op://Private/FusionAuth-API-prod/credential" 

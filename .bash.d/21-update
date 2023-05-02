@@ -1,0 +1,31 @@
+function update_clock {
+    # WSL has clock skew issue (see https://github.com/microsoft/WSL/issues/10006)
+
+    # Update the system clock via NTP
+    sudo ntpdate pool.ntp.org
+
+    # Update the hardware clock (which sometimes drifts)
+    sudo hwclock -s
+}
+
+# update: updates the current distribution using various package managers when present
+function update {
+    echo "------------- updating clock -------------"
+    update_clock
+
+    if command -v apt &> /dev/null ; then
+        echo "------------- updating apt -------------" 
+        sudo apt -y update
+        sudo apt -y full-upgrade
+    fi
+
+    if command -v nix-env &> /dev/null ; then
+        echo "------------- updating nix -------------" 
+        nix-env -u
+    fi
+
+    if command -v rustup &> /dev/null ; then
+        echo "------------- updating rustup -------------" 
+        rustup update
+    fi
+}

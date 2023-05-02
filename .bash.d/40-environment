@@ -1,0 +1,4 @@
+# --------------------------- Environment Variables ----------------------------
+
+export EDITOR="code"
+export GIT_EDITOR="code --wait"
