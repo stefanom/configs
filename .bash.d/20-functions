@@ -10,8 +10,8 @@ function ports() {
     lsof -nP -iTCP -sTCP:LISTEN
 }
 
-# k: kill the application that matches the given name
-function k() {
+# kl: kill the application that matches the given name
+function kl() {
     kill $(pids $1)
 }
 

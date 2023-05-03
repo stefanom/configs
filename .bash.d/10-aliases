@@ -28,3 +28,5 @@ alias mem_hogs='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
 alias lsock='sudo lsof -i -P'
 alias size='du -m -d 1 | sort -n'
 alias pyserver='python -m http.server 8888 --bind 127.0.0.1'
+
+alias k='kubectl'
