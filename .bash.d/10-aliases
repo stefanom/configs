@@ -23,7 +23,6 @@ alias s='source ~/.bashrc'
 alias edit='code'
 
 alias p='ps -aux'
-alias pstree='pstree -g 2 -w'
 alias mem_hogs='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
 alias lsock='sudo lsof -i -P'
 alias size='du -m -d 1 | sort -n'

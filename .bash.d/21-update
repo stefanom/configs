@@ -8,24 +8,36 @@ function update_clock {
     sudo hwclock -s
 }
 
-# update: updates the current distribution using various package managers when present
+function update_apt {
+    echo "------------- updating apt -------------" 
+    sudo apt -y update
+    sudo apt -y full-upgrade
+}
+
+function update_nix {
+    echo "------------- updating nix -------------"
+    nix-channel --update
+    nix-env --upgrade
+}
+
+function update_rust {
+    echo "------------- updating rustup -------------" 
+    rustup update
+}
+
 function update {
     echo "------------- updating clock -------------"
     update_clock
 
     if command -v apt &> /dev/null ; then
-        echo "------------- updating apt -------------" 
-        sudo apt -y update
-        sudo apt -y full-upgrade
+        update_apt
     fi
 
     if command -v nix-env &> /dev/null ; then
-        echo "------------- updating nix -------------" 
-        nix-env -u
+        update_nix
     fi
 
     if command -v rustup &> /dev/null ; then
-        echo "------------- updating rustup -------------" 
-        rustup update
+        update_rust
     fi
 }
