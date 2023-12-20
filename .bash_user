@@ -1,7 +1,5 @@
-#!/bin/sh
-
 # source bash init scripts if executable
-for script in $HOME/.bash.d/*; do
+for script in $HOME/.bash.d/* ; do
     if [ -x "$script" ]; then
         source $script
     fi

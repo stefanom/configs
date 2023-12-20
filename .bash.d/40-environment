@@ -2,3 +2,8 @@
 
 export EDITOR="code"
 export GIT_EDITOR="code --wait"
+
+# Starship
+if in_path "starship" ; then
+    eval "$(~/.nix-profile/bin/starship init bash)"
+fi

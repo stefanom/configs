@@ -1,0 +1,53 @@
+#------------------------------ Aliases -----------------------------
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+alias p='ps -aux'
+alias mem_hogs='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
+alias lsock='sudo lsof -i -P'
+alias size='du -m -d 1 | sort -n'
+alias pyserver='python -m http.server 8888 --bind 127.0.0.1'
+
+alias s='source ~/.profile'
+alias edit='code'
+
+if in_path "eza" ; then
+    alias ls='eza -1 -g -x -T -F --icons --group-directories-first --git -L 1'
+    alias l='ls'
+    alias la='ls -a'
+    alias ll='ls -alF'
+    alias dir='ll'
+    alias tree='eza --tree'
+else
+    alias ll='ls -l'
+    alias l='ls -lLhtrA'
+    alias dir='ls -l'
+fi
+
+if in_path "bat" ; then
+    alias cat='bat --style=plain --paging=never'
+fi 
+
+if in_path "z" ; then
+    alias cd='z'
+fi
+
+if in_path "kubectl" ; then
+    alias k='kubectl'
+fi
+
+if in_path "git" ; then
+    alias lsb='git branch'
+    alias lst='git branch -r'
+    alias cdb='git checkout'
+    alias mkb='git checkout -b'
+    alias rmb='git branch -D'
+    alias mergebranch='git merge --squash'
+    alias diffbranch="git diff --color master..$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')"
+    alias commit='git commit -a -m "commit: $1"'
+
+    alias config='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+fi

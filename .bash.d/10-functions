@@ -75,3 +75,13 @@ function hh {
     done
     eval $CMD
 }
+
+## in_path: checks to see if the given command is available in path to execute.
+# This is meant to be used in the if/fi block of another script, not directly.
+function in_path() {
+    if command -v "$1" &> /dev/null; then
+        return 0  # Program exists
+    else
+        return 1  # Program does not exist
+    fi
+}
