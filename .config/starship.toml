@@ -12,6 +12,8 @@ $username\
 $sudo\
 $time\
 [](bg:#DA627D fg:#9A348E)\
+$conda\
+$nix_shell\
 $docker_context\
 $aws\
 $kubernetes\
@@ -61,6 +63,10 @@ format = '[$time ]($style)'
 time_format = "%R" # Hour:Minute Format
 
 # -------------- contexts ---------------
+
+[conda]
+style = "bg:#DA627D"
+format = '[ $symbol$environment ]($style)'
 
 [docker_context]
 symbol = ""
