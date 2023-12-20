@@ -2,7 +2,7 @@ function rig {
     if ! in_path "nix-env" ; then
         install_nix
     fi
-    nix-env install starship eza zoxide bat 
+    nix-env --install starship eza zoxide bat 
     #nix-env btop kondo jq fq just fzf
 }
 

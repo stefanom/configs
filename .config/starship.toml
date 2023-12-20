@@ -68,6 +68,10 @@ time_format = "%R" # Hour:Minute Format
 style = "bg:#DA627D"
 format = '[ $symbol$environment ]($style)'
 
+[nix_shell]
+style = "bg:#DA627D"
+format = '[ $symbol$state( \($name\))]($style)'
+
 [docker_context]
 symbol = ""
 style = "bg:#DA627D"
