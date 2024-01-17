@@ -92,11 +92,11 @@ symbol = "☁️ "
 style = "bg:#DA627D"
 format = '[ ($context )]($style)'
 disabled = false
-
-[kubernetes.context_aliases]
-'arn:aws:eks:.*:cluster/dev' = 'dev'
-'arn:aws:eks:.*:cluster/stg' = 'stg'
-'arn:aws:eks:.*:cluster/live' = 'live'
+contexts = [
+    { context_pattern = "arn:aws:eks:.*:cluster/dev", context_alias = "dev" },
+    { context_pattern = "arn:aws:eks:.*:cluster/stg", context_alias = "stg" },
+    { context_pattern = "arn:aws:eks:.*:cluster/live", context_alias = "live" },
+]
 
 # -------------- git ---------------
 
