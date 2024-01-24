@@ -40,8 +40,3 @@ fi
 if [ -e "$HOME/.cargo/env" ]; then 
     . "$HOME/.cargo/env"
 fi
-
-# Prepare the environment for our own stuff (this must come last!)
-if [ -f "$HOME/.bash_user" ]; then 
-    . "$HOME/.bash_user"
-fi
