@@ -116,7 +116,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Prepare the environment for our own stuff (this must come last!)
+# Prepare our own stuff
 if [ -f "$HOME/.bash_user" ]; then 
     . "$HOME/.bash_user"
 fi
