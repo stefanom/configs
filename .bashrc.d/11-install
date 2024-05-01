@@ -19,5 +19,5 @@ function rig {
     if ! in_path cargo ; then
         install_rust
     fi
-    cargo install starship eza zoxide bat fzf jq btm procs kondo fq bandwhich dust
+    cargo install starship eza zoxide bat fzf jq btm procs kondo bandwhich du-dust
 }
