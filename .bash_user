@@ -9,7 +9,7 @@ if [ -d "$HOME/.local/bin" ]; then
 fi
 
 # Nix
-if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then 
+if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then 
     . "$HOME/.nix-profile/etc/profile.d/nix.sh" 
 fi
 
@@ -19,12 +19,12 @@ if [ -f "$HOME/.conda/etc/profile.d/conda.sh" ]; then
 fi
 
 # Rust
-if [ -e "$HOME/.cargo/env" ]; then 
+if [ -f "$HOME/.cargo/env" ]; then 
     . "$HOME/.cargo/env"
 fi
 
 # Python env
-if [ -e "$HOME/.venv/bin/activate" ]; then 
+if [ -f "$HOME/.venv/bin/activate" ]; then 
     . "$HOME/.venv/bin/activate"
 fi
 
