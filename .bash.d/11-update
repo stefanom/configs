@@ -2,7 +2,7 @@ function rig {
     if ! in_path "nix-env" ; then
         install_nix
     fi
-    nix-env --install starship eza zoxide bat 
+    nix-env --install starship eza zoxide bat btm procs
     #nix-env btop kondo jq fq just fzf
 }
 
@@ -15,63 +15,65 @@ function install_rust {
 }
 
 function install_conda {
-    if [ ! -d "$HOME/.conda" ]; then
-        mkdir "$HOME/.conda"
-        wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O "$HOME/.conda/miniconda.sh"
-        bash "$HOME/.conda/miniconda.sh" -b -u -p "$HOME/.conda"
-        rm -rf "$HOME/.conda/miniconda.sh"
+    # Install Conda only if we're on an x86_64 kernel.
+    if in_kernel x86_64 ; then
+        if [ ! -d "$HOME/.conda" ]; then
+            mkdir "$HOME/.conda"
+            wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O "$HOME/.conda/miniconda.sh"
+            bash "$HOME/.conda/miniconda.sh" -b -u -p "$HOME/.conda"
+            rm -rf "$HOME/.conda/miniconda.sh"
+        fi
     fi
 }
 
 function update_clock {
-    # WSL has clock skew issue (see https://github.com/microsoft/WSL/issues/10006)
+    # This is needed because WSL has a clock skew issue (see https://github.com/microsoft/WSL/issues/10006)
 
-    # Update the system clock via NTP
-    sudo ntpdate pool.ntp.org
+    if in_path "ntpdate" ; then
+        echo "------------- updating the system clock via NTP -------------"
+        sudo ntpdate pool.ntp.org
 
-    # Update the hardware clock (which sometimes drifts)
-    sudo hwclock -s
+        if in_path "hwclock" ; then
+            echo "------------- updating the hardware clock too -------------"
+            sudo hwclock -s
+        fi
+    fi
 }
 
 function update_apt {
-    echo "------------- updating apt -------------" 
-    sudo apt -y update
-    sudo apt -y full-upgrade
+    if in_path "apt" ; then
+        echo "------------- updating apt -------------" 
+        sudo apt -y update
+        sudo apt -y full-upgrade
+    fi
 }
 
 function update_nix {
-    echo "------------- updating nix -------------"
-    nix-channel --update
-    nix-env --upgrade
+    if in_path "nix-env" ; then
+        echo "------------- updating nix -------------"
+        nix-channel --update
+        nix-env --upgrade
+    fi
 }
 
 function update_conda {
-    echo "------------- updating conda -------------"
-    conda update --all
+    if in_path "conda" ; then
+        echo "------------- updating conda -------------"
+        conda update --all
+    fi
 }
 
 function update_rust {
-    echo "------------- updating rustup -------------" 
-    rustup update
+    if in_path "rustup" ; then
+        echo "------------- updating rustup -------------" 
+        rustup update
+    fi
 }
 
 function update {
-    echo "------------- updating clock -------------"
     update_clock
-
-    if in_path "apt" ; then
-        update_apt
-    fi
-
-    if in_path "nix-env" ; then
-        update_nix
-    fi
-
-    if in_path "conda" ; then
-        update_conda
-    fi
-
-    if in_path "rustup" ; then
-        update_rust
-    fi
+    update_apt
+    update_nix
+    update_conda
+    update_rust
 }

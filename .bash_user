@@ -23,6 +23,11 @@ if [ -e "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"
 fi
 
+# Python env
+if [ -e "$HOME/.venv/bin/activate" ]; then 
+    . "$HOME/.venv/bin/activate"
+fi
+
 # Source bash init scripts if executable
 for script in $HOME/.bash.d/* ; do
     if [ -x "$script" ]; then

@@ -39,6 +39,10 @@ if in_path "kubectl" ; then
     alias k='kubectl'
 fi
 
+if in_path "btm" ; then
+    alias top='btm'
+fi
+
 if in_path "git" ; then
     alias lsb='git branch'
     alias lst='git branch -r'

@@ -13,5 +13,10 @@ if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
     if [ -f "$HOME/.bashrc" ]; then
 	    . "$HOME/.bashrc"
+
+        # include our own stuff if it exists
+        if [ -f "$HOME/.bash_user" ]; then 
+            . "$HOME/.bash_user"
+        fi
     fi
 fi

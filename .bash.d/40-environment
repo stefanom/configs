@@ -2,9 +2,3 @@
 
 export EDITOR="code"
 export GIT_EDITOR="code --wait"
-export OPENAI_API_KEY="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"
-
-# Starship
-if in_path "starship" ; then
-    eval "$(~/.nix-profile/bin/starship init bash)"
-fi

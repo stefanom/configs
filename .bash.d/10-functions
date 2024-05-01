@@ -1,4 +1,26 @@
-# ----------------------------- Functions ------------------------------
+# ----------------------------- Utility Functions ------------------------------
+
+## in_path: checks to see if the given command is available in path to execute.
+# This is meant to be used in the if/fi block of another script, not directly.
+function in_path() {
+    if command -v "$1" &> /dev/null; then
+        return 0  # Program exists
+    else
+        return 1  # Program does not exist
+    fi
+}
+
+## in_kernel: checks to see if the given string is part of the uname -r kernel string.
+# This is meant to be used in the if/fi block of another script, not directly.
+function in_path() {
+    if [[ $(uname -r) == *"$1"* ]]; then
+        return 0  # String is part of the kernel string
+    else
+        return 1  # String is not part of the kernel string
+    fi
+}
+
+# ----------------------------- Useful Functions ------------------------------
 
 # pids: list the PIDs of the applications that match the given name
 function pids() {
@@ -74,14 +96,4 @@ function hh {
         CMD="$CMD | grep \"$SEARCH_TERM\""
     done
     eval $CMD
-}
-
-## in_path: checks to see if the given command is available in path to execute.
-# This is meant to be used in the if/fi block of another script, not directly.
-function in_path() {
-    if command -v "$1" &> /dev/null; then
-        return 0  # Program exists
-    else
-        return 1  # Program does not exist
-    fi
 }
