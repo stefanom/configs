@@ -1,7 +1,7 @@
 # ------------- Connects WSL with warp ------------------------
 
 if in_kernel microsoft ; then
-    if wsl.exe --list | grep -q "wsl-vpnkit" ; then
+    if wsl.exe --list | grep -q wsl-vpnkit ; then
         wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit status >/dev/null || wsl.exe -d wsl-vpnkit --cd /app service wsl-vpnkit start
     fi
 fi

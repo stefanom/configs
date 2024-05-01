@@ -1,6 +1,5 @@
 # --------------------------- Prompt Settings ----------------------------
 
-# Starship
 if in_path "starship" ; then
     eval "$(starship init bash)"
 fi

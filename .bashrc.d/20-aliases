@@ -14,7 +14,7 @@ alias pyserver='python -m http.server 8888 --bind 127.0.0.1'
 alias s='source ~/.profile'
 alias edit='code'
 
-if in_path "eza" ; then
+if in_path eza ; then
     alias ls='eza -1 -g -x -T -F --icons --group-directories-first --git -L 1'
     alias l='ls'
     alias la='ls -a'
@@ -27,23 +27,23 @@ else
     alias dir='ls -l'
 fi
 
-if in_path "bat" ; then
+if in_path bat ; then
     alias cat='bat --style=plain --paging=never'
 fi 
 
-if in_path "z" ; then
+if in_path z ; then
     alias cd='z'
 fi
 
-if in_path "kubectl" ; then
+if in_path kubectl ; then
     alias k='kubectl'
 fi
 
-if in_path "btm" ; then
+if in_path btm ; then
     alias top='btm'
 fi
 
-if in_path "git" ; then
+if in_path git ; then
     alias lsb='git branch'
     alias lst='git branch -r'
     alias cdb='git checkout'

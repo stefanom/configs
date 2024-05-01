@@ -77,18 +77,18 @@ function findword() {
 }
 
 # http_headers: get just the HTTP headers from a web page (and its redirects)
-function http_headers () {
+function http_headers() {
     curl -I -L $@ ;
 }
 
 # up: move up a directory until you hit one that matches a pattern
-function up {
+function up() {
     cd $(pwd | sed "s/\.*\($1[^\/]*\).*/\1/")
 }
 
 # down: move down a directory until you hit one that matches a pattern
 # (potentially slow)
-function down {
+function down() {
     cd $(find . -type d -name $1 -print -quit)
 }
 
@@ -96,7 +96,7 @@ function down {
 # but it works like an un-ordered keyword search, and de-duplicates identical
 # commands. When I see the item I want to run, I recall it with !num
 # (num is the first column returned by history).
-function hh {
+function hh() {
     CMD="history | grep -vE '^[[:blank:]]*[[:digit:]]+[[:blank:]]+(history|gh)' | sort -k2 -k1nr | uniq -f1 | sort -n"
     for SEARCH_TERM in "$@"; do
         CMD="$CMD | grep \"$SEARCH_TERM\""

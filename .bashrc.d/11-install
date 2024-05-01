@@ -19,14 +19,14 @@ function install_conda {
 }
 
 function rig {
-    if ! in_path "nix-env" ; then
+    if ! in_path nix-env ; then
         install_nix
     fi
     nix-env --install starship eza zoxide bat btm procs
 }
 
 function rig-extra {
-    if ! in_path "nix-env" ; then
+    if ! in_path nix-env ; then
         install_nix
     fi
     nix-env --install kondo jq fq fzf
