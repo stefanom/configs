@@ -12,7 +12,7 @@ function in_path() {
 
 ## in_kernel: checks to see if the given string is part of the uname -r kernel string.
 # This is meant to be used in the if/fi block of another script, not directly.
-function in_path() {
+function in_kernel() {
     if [[ $(uname -r) == *"$1"* ]]; then
         return 0  # String is part of the kernel string
     else
