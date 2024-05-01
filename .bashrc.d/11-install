@@ -1,5 +1,5 @@
 function install_nix {
-    curl --proto '=https' --tlsv1.2 -sSf https://nixos.org/nix/install | sh
+    sh <(curl -L https://nixos.org/nix/install) --daemon
 }
 
 function install_rust {
