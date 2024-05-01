@@ -11,7 +11,7 @@ alias lsock='sudo lsof -i -P'
 alias size='du -m -d 1 | sort -n'
 alias pyserver='python -m http.server 8888 --bind 127.0.0.1'
 
-alias s='source ~/.profile'
+alias s='. ~/.bashrc'
 alias edit='code'
 
 if in_path eza ; then
