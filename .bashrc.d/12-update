@@ -1,11 +1,11 @@
 function update_clock {
     # This is needed because WSL has a clock skew issue (see https://github.com/microsoft/WSL/issues/10006)
 
-    if in_path "ntpdate" ; then
+    if in_path ntpdate ; then
         echo "------------- updating the system clock via NTP -------------"
         sudo ntpdate pool.ntp.org
 
-        if in_path "hwclock" ; then
+        if in_path hwclock ; then
             echo "------------- updating the hardware clock too -------------"
             sudo hwclock -s
         fi
@@ -13,7 +13,7 @@ function update_clock {
 }
 
 function update_apt {
-    if in_path "apt" ; then
+    if in_path apt ; then
         echo "------------- updating apt -------------" 
         sudo apt -y update
         sudo apt -y full-upgrade
@@ -21,7 +21,7 @@ function update_apt {
 }
 
 function update_nix {
-    if in_path "nix-env" ; then
+    if in_path nix-env ; then
         echo "------------- updating nix -------------"
         nix-channel --update
         nix-env --upgrade
@@ -29,14 +29,14 @@ function update_nix {
 }
 
 function update_conda {
-    if in_path "conda" ; then
+    if in_path conda ; then
         echo "------------- updating conda -------------"
         conda update --all
     fi
 }
 
 function update_rust {
-    if in_path "rustup" ; then
+    if in_path rustup ; then
         echo "------------- updating rustup -------------" 
         rustup update
     fi
