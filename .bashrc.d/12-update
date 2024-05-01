@@ -1,31 +1,3 @@
-function rig {
-    if ! in_path "nix-env" ; then
-        install_nix
-    fi
-    nix-env --install starship eza zoxide bat btm procs
-    #nix-env btop kondo jq fq just fzf
-}
-
-function install_nix {
-    curl --proto '=https' --tlsv1.2 -sSf https://nixos.org/nix/install | sh
-}
-
-function install_rust {
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-}
-
-function install_conda {
-    # Install Conda only if we're on an x86_64 kernel.
-    if in_kernel x86_64 ; then
-        if [ ! -d "$HOME/.conda" ]; then
-            mkdir "$HOME/.conda"
-            wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O "$HOME/.conda/miniconda.sh"
-            bash "$HOME/.conda/miniconda.sh" -b -u -p "$HOME/.conda"
-            rm -rf "$HOME/.conda/miniconda.sh"
-        fi
-    fi
-}
-
 function update_clock {
     # This is needed because WSL has a clock skew issue (see https://github.com/microsoft/WSL/issues/10006)
 

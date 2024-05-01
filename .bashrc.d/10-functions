@@ -20,6 +20,12 @@ function in_kernel() {
     fi
 }
 
+## config: command to manage a bare git dotfile repo as discussed 
+# at https://www.atlassian.com/git/tutorials/dotfiles
+function config() {
+   git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
+}
+
 # ----------------------------- Useful Functions ------------------------------
 
 # pids: list the PIDs of the applications that match the given name
