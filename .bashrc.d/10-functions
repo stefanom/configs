@@ -2,7 +2,7 @@
 
 ## in_path: checks to see if the given command is available in path to execute.
 # This is meant to be used in the if/fi block of another script, not directly.
-function in_path() {
+function in_path {
     if command -v "$1" &> /dev/null; then
         return 0  # Program exists
     else
@@ -12,7 +12,7 @@ function in_path() {
 
 ## in_kernel: checks to see if the given string is part of the uname -r kernel string.
 # This is meant to be used in the if/fi block of another script, not directly.
-function in_kernel() {
+function in_kernel {
     if [[ $(uname -r) == *"$1"* ]]; then
         return 0  # String is part of the kernel string
     else
@@ -22,73 +22,73 @@ function in_kernel() {
 
 ## config: command to manage a bare git dotfile repo as discussed 
 # at https://www.atlassian.com/git/tutorials/dotfiles
-function config() {
+function config {
    git --git-dir=$HOME/.cfg/ --work-tree=$HOME $@
 }
 
 # ----------------------------- Useful Functions ------------------------------
 
 # pids: list the PIDs of the applications that match the given name
-function pids() {
+function pids {
     ps -ax | grep -i $1 | grep -i -v  "grep.-i.$1" | awk '{print $1}'
 }
 
 # ports: list the processes listening to local ports
-function ports() {
+function ports {
     lsof -nP -iTCP -sTCP:LISTEN
 }
 
 # kl: kill the application that matches the given name
-function kl() {
+function kl {
     kill $(pids $1)
 }
 
 # w: search for a string in the files in the CWD and sort them by frequency of occurrence
-function w() {
+function w {
     grep -i -r "$1" . | grep -v svn | grep -v Binary | cut -d : -f 1 | sort | uniq -c | sort -n
 }
 
 # ww: search for a string in the files in the CWD and show the files, line number and highlight the string
-function ww() {
+function ww {
     grep -irEH --color --line-number "$1" .
 }
 
 # sniff: watch the TCP traffic on the given interface and optional parameters (normally host or port)
-function sniff() {
+function sniff {
     sudo tcpdump -i $1 -A -s 0 -p -q -t -S -nn $2 $3
 }
 
 # ff:  to find a file under the current directory
-function ff() {
+function ff {
     find . -name "$@" ;
 }
 # ffs: to find a file whose name starts with a given string
-function ffs() {
+function ffs {
     find . -name "$@"'*' ;
 }
 # ffe: to find a file whose name ends with a given string
-function ffe() {
+function ffe {
     find . -name '*'"$@" ;
 }
 
 # findword: search for a word in the Unix word list
-function findword() {
+function findword {
     grep ^"$@"$ /usr/share/dict/words ;
 }
 
 # http_headers: get just the HTTP headers from a web page (and its redirects)
-function http_headers() {
+function http_headers {
     curl -I -L $@ ;
 }
 
 # up: move up a directory until you hit one that matches a pattern
-function up() {
+function up {
     cd $(pwd | sed "s/\.*\($1[^\/]*\).*/\1/")
 }
 
 # down: move down a directory until you hit one that matches a pattern
 # (potentially slow)
-function down() {
+function down {
     cd $(find . -type d -name $1 -print -quit)
 }
 
@@ -96,7 +96,7 @@ function down() {
 # but it works like an un-ordered keyword search, and de-duplicates identical
 # commands. When I see the item I want to run, I recall it with !num
 # (num is the first column returned by history).
-function hh() {
+function hh {
     CMD="history | grep -vE '^[[:blank:]]*[[:digit:]]+[[:blank:]]+(history|gh)' | sort -k2 -k1nr | uniq -f1 | sort -n"
     for SEARCH_TERM in "$@"; do
         CMD="$CMD | grep \"$SEARCH_TERM\""
