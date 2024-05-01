@@ -1,33 +1,26 @@
-function install_nix {
-    sh <(curl -L https://nixos.org/nix/install) --daemon
+function install_conda {
+    if [ ! -d "$HOME/.conda" ]; then
+        mkdir "$HOME/.conda"
+        wget "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-$(uname -p).sh" -O "$HOME/.conda/miniconda.sh"
+        bash "$HOME/.conda/miniconda.sh" -b -u -p "$HOME/.conda"
+        rm -rf "$HOME/.conda/miniconda.sh"
+    fi
+}
+
+function rig {
+    if ! in_path conda ; then
+        install_conda
+    fi
+    conda install -c conda-forge starship eza zoxide bat fzf jq
 }
 
 function install_rust {
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 }
 
-function install_conda {
-    # Install Conda only if we're on an x86_64 kernel.
-    if in_kernel x86_64 ; then
-        if [ ! -d "$HOME/.conda" ]; then
-            mkdir "$HOME/.conda"
-            wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O "$HOME/.conda/miniconda.sh"
-            bash "$HOME/.conda/miniconda.sh" -b -u -p "$HOME/.conda"
-            rm -rf "$HOME/.conda/miniconda.sh"
-        fi
-    fi
-}
-
-function rig {
-    if ! in_path nix-env ; then
-        install_nix
-    fi
-    nix-env --install starship eza zoxide bat btm procs
-}
-
 function rig-extra {
-    if ! in_path nix-env ; then
-        install_nix
+    if ! in_path cargo ; then
+        install_rust
     fi
-    nix-env --install kondo jq fq fzf
+    cargo install btm procs kondo fq
 }
