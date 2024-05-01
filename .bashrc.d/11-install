@@ -1,26 +1,23 @@
+function install_rust {
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+}
+
+function install_nix {
+    bash <(curl -L https://nixos.org/nix/install) --no-daemon
+}
+
 function install_conda {
     if [ ! -d "$HOME/.conda" ]; then
         mkdir "$HOME/.conda"
-        wget "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-$(uname -m).sh" -O "$HOME/.conda/miniconda.sh"
+        wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh" -O "$HOME/.conda/miniconda.sh"
         bash "$HOME/.conda/miniconda.sh" -b -u -p "$HOME/.conda"
         rm -rf "$HOME/.conda/miniconda.sh"
     fi
 }
 
 function rig {
-    if ! in_path conda ; then
-        install_conda
-    fi
-    conda install -c conda-forge starship eza zoxide bat fzf jq
-}
-
-function install_rust {
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-}
-
-function rig-extra {
     if ! in_path cargo ; then
         install_rust
     fi
-    cargo install btm procs kondo fq
+    cargo install starship eza zoxide bat fzf jq btm procs kondo fq bandwhich dust
 }
