@@ -1,7 +1,7 @@
 function install_conda {
     if [ ! -d "$HOME/.conda" ]; then
         mkdir "$HOME/.conda"
-        wget "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-$(uname -p).sh" -O "$HOME/.conda/miniconda.sh"
+        wget "https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-$(uname -m).sh" -O "$HOME/.conda/miniconda.sh"
         bash "$HOME/.conda/miniconda.sh" -b -u -p "$HOME/.conda"
         rm -rf "$HOME/.conda/miniconda.sh"
     fi
