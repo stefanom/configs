@@ -19,7 +19,7 @@ if in_path eza ; then
     alias l='ls'
     alias la='ls -a'
     alias ll='ls -alF'
-    alias dir='ll'
+    alias dir='l'
     alias tree='eza --tree'
 else
     alias ll='ls -l'
