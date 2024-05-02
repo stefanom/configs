@@ -1,5 +1,16 @@
 # --------------------------- Prompt Settings ----------------------------
 
 if in_path "starship" ; then
+    config="$HOME/.config/starship.toml"
+
+    if [ ! -L "$symlink" ]; then
+        if is_rpi; then
+            target="$HOME/.config/starship_rpi.toml"
+        else
+            target="$HOME/.config/starship_wsl.toml"
+        fi
+        ln -s "$target" "$config"
+    fi
+
     eval "$(starship init bash)"
 fi

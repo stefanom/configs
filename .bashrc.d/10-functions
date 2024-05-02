@@ -20,6 +20,20 @@ function in_kernel {
     fi
 }
 
+## is_wsl: Function to check if running in WSL
+function is_wsl {
+    grep -qi microsoft /proc/version 2>/dev/null
+}
+
+## is_rpi: Function to check if running on Raspberry Pi
+function is_rpi {
+    if [ -f /proc/device-tree/model ]; then
+        grep -qi raspberry /proc/device-tree/model 2>/dev/null
+    else
+        return 1
+    fi
+}
+
 ## config: command to manage a bare git dotfile repo as discussed 
 # at https://www.atlassian.com/git/tutorials/dotfiles
 function config {
