@@ -3,7 +3,7 @@
 if in_path "starship" ; then
     config="$HOME/.config/starship.toml"
 
-    if [ ! -L "$symlink" ]; then
+    if [ ! -L "$config" ]; then
         if is_rpi; then
             target="$HOME/.config/starship_rpi.toml"
         else
