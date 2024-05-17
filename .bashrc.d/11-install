@@ -9,7 +9,7 @@ function install_nix {
 function install_conda {
     if [ ! -d "$HOME/.conda" ]; then
         mkdir "$HOME/.conda"
-        wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh" -O "$HOME/.conda/miniconda.sh"
+        wget "https://repo.anaconda.com/miniconda/Miniconda3-latest-$(uname)-$(uname -m).sh" -O "$HOME/.conda/miniconda.sh"
         bash "$HOME/.conda/miniconda.sh" -b -u -p "$HOME/.conda"
         rm -rf "$HOME/.conda/miniconda.sh"
     fi
@@ -19,5 +19,5 @@ function rig {
     if ! in_path cargo ; then
         install_rust
     fi
-    cargo install starship eza zoxide bat fzf jq bottom procs kondo bandwhich du-dust
+    cargo install starship eza bandwhich bat bottom du-dust kondo procs zoxide ripgrep git-delta
 }
