@@ -2,3 +2,12 @@
 
 export EDITOR="code"
 export GIT_EDITOR="code --wait"
+
+# Modular + Mojo
+if in_path modular ; then
+    if [ -d "$HOME/.modular" ] ; then
+        MODULAR_HOME="$HOME/.modular"
+        MOJO_PATH="$(modular config mojo.path)"
+        PATH="$MOJO_PATH/bin:$PATH"
+    fi
+fi

@@ -13,22 +13,20 @@ if [ -f "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"
 fi
 
+# CUDA
+if [ -d "/usr/local/cuda/bin" ] ; then
+    PATH="/usr/local/cuda/bin:$PATH"
+fi
+
 # Python env
 if [ -f "$HOME/.venv/bin/activate" ]; then 
     . "$HOME/.venv/bin/activate"
 fi
 
-# set PATH so it includes CUDA's bin if it exists
-if [ -d "/usr/local/cuda/bin" ] ; then
-    PATH="/usr/local/cuda/bin:$PATH"
-fi
-
-# set PATH so it includes user's private bin if it exists
+# set PATH so it includes user's private bin if they exists
 if [ -d "$HOME/bin" ]; then
     PATH="$HOME/bin:$PATH"
 fi
-
-# set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
@@ -36,6 +34,7 @@ fi
 # Source bash init scripts if executable
 for script in $HOME/.bashrc.d/* ; do
     if [ -x "$script" ]; then
+        #echo "Sourcing $script"
         source $script
     fi
 done
